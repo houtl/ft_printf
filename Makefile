@@ -6,7 +6,7 @@
 #    By: thou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 16:17:53 by thou              #+#    #+#              #
-#    Updated: 2017/03/17 15:53:09 by thou             ###   ########.fr        #
+#    Updated: 2017/03/17 16:24:23 by thou             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ RESET					=	\033[0m
 CLEAR					=	\033[H\e[J
 
 NAME	=	libftprintf.a
-FLAG	=	-c -Wall -Wextra -Werror
+FLAG	=	-Wall -Wextra -Werror
 INC		=	-Iincludes -Ilibft/includes
 SRC_DIR	=	src/
 SRC_BASE=	ft_printf.c
@@ -47,8 +47,8 @@ $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 	@gcc $(FLAG) -o $@ -c $< $(INCLUDES)
 
 clean:
-	make clean -C $(LIB)
-	rm -rf $(OBJ)
+	@make clean -C $(LIB)
+	@rm -rf $(OBJ)
 	@echo "$(YELLOW)Clean	./obj$(GREEN)			[ OK ]$(RESET)"
 
 
@@ -57,6 +57,6 @@ fclean:
 	rm -rf $(OBJ)
 	@echo "$(YELLOW)Clean	./obj$(GREEN)			[ OK ]$(RESET)"
 	rm -rf $(NAME)
-	@echo "$(YELLOW)Clean	libftprintf.a$(GREEN)	[ OK ]$(RESET)"
+	@echo "$(YELLOW)Clean	$(NAME)$(GREEN)		[ OK ]$(RESET)"
 
 re: fclean all
