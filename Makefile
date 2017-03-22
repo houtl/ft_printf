@@ -44,7 +44,7 @@ $(NAME): $(OBJ)
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
-	@gcc $(FLAG) -o $@ -c $< $(INCLUDES)
+	@gcc $(FLAG) -o $@ -c $< $(INCLUDES) -lft $(LFT)
 
 clean:
 	@make clean -C $(LIB)
