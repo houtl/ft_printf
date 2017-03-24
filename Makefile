@@ -6,7 +6,7 @@
 #    By: thou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 16:17:53 by thou              #+#    #+#              #
-#    Updated: 2017/03/17 16:26:00 by thou             ###   ########.fr        #
+#    Updated: 2017/03/24 17:11:59 by thou             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,41 +21,47 @@ WHITE					=	\033[37;1m
 RESET					=	\033[0m
 CLEAR					=	\033[H\e[J
 
-NAME	=	libftprintf.a
-FLAG	=	-Wall -Wextra -Werror
-INC		=	-Iincludes -Ilibft/includes
-SRC_DIR	=	src/
-SRC_BASE=	ft_printf.c
-SRC		=	$(addprefix $(SRC_DIR), $(SRC_BASE))
-OBJ_DIR	=	obj/
-OBJ		=	$(addprefix $(OBJ_DIR), $(SRC_BASE:.c=.o))
-LIB		=	./libft
-LFT		=	./libft/libft.a
+NAME		=	libftprintf.a
+FLAG		=	-Wall -Wextra -Werror
+INC			=	-Iincludes -Ilibft/includes
+SRC_DIR		=	src/
+SRC_BASE	=	ft_printf.c ft_vfprintf.c ft_printf0.c
+SRC			=	$(addprefix $(SRC_DIR), $(SRC_BASE))
+OBJ_DIR		=	obj/
+OBJ			=	$(addprefix $(OBJ_DIR), $(SRC_BASE:.c=.o))
+LIB			=	libft
+LIB_SRC_DIR	=	$(LIB)/src/
+LIB_SRC_BASE=	libc/ft_strlen.c\
+				supplementaire/ft_putnbr.c\
+				supplementaire/ft_putchar.c\
+				supplementaire/ft_putchar_fd.c
+LIB_OBJ_DIR	=	$(LIB)/obj/
+LIB_SRC		=	$(addprefix $(LIB_SRC_DIR), $(LIB_SRC_BASE))
+LIB_OBJ		=	$(addprefix $(LIB_OBJ_DIR), $(LIB_SRC_BASE:.c=.o))
 
-all: $(LFT) $(NAME)
 
-$(LFT):
-	make -C $(LIB)
+all: $(NAME)
 
-$(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+$(NAME): $(OBJ) $(LIB_OBJ)
+	@ar rvc $(NAME) $(OBJ) $(LIB_OBJ)
+	@ranlib $(NAME)
 	@echo "\033[48;5;15;38;5;25;1mMAKE $(NAME) DONE$(RESET)"
+
+$(LIB_OBJ_DIR)%.o : $(LIB_SRC_DIR)%.c
+	@mkdir -p $(dir $@)
+	@gcc $(FLAG) -o $@ -c $< $(INC)
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
-	@gcc $(FLAG) -o $@ -c $< $(INCLUDES) -lft $(LFT)
+	@gcc $(FLAG) -o $@ -c $< $(INC)
 
 clean:
-	@make clean -C $(LIB)
+	@rm -rf $(LIB_OBJ_DIR)
 	@rm -rf $(OBJ_DIR)
 	@echo "$(YELLOW)Clean	./obj$(GREEN)			[ OK ]$(RESET)"
 
 
-fclean:
-	@make fclean -C $(LIB)
-	@rm -rf $(OBJ_DIR)
-	@echo "$(YELLOW)Clean	./obj$(GREEN)			[ OK ]$(RESET)"
+fclean: clean
 	@rm -rf $(NAME)
 	@echo "$(YELLOW)Clean	$(NAME)$(GREEN)		[ OK ]$(RESET)"
 
