@@ -6,27 +6,40 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 12:33:38 by thou              #+#    #+#             */
-/*   Updated: 2017/03/25 12:25:43 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/25 18:26:54 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_persent(int *len)
+int	ft_persent(t_h *h)
 {
+	int				len;
+	len = 1;
+	while (h->nb > 1 && h->moin != 1)
+	{
+		write(1, " ", 1);
+		len++;
+		h->nb--;
+	}
 	write(1, "%", 1);
-	*len += 1;
-	return (1);
+	while (h->nb > 1 && h->moin == 1)
+	{
+		write(1, " ", 1);
+		len++;
+		h->nb--;
+	}
+	return (len);
 }
 
-int ft_string(int *len, va_list arg)
+int ft_string(va_list arg, t_h *h)
 {
 	char			*str;
+	int				len;
 
 	str = va_arg(arg, char*);
-	write(1, str, ft_strlen(str));
-	*len += ft_strlen(str);
-	return (1);
+	len = ft_printnesp(h, str);
+	return (len);
 }
 
 static int	wchar_to_char(unsigned char **s, wchar_t c)
@@ -56,7 +69,7 @@ static int	wchar_to_char(unsigned char **s, wchar_t c)
 	return (0);
 }
 
-int			ft_wchar(int *len, va_list arg)
+int			ft_wchar(va_list arg, t_h *h)
 {
 	wchar_t			*w;
 	unsigned char	*str;
@@ -77,7 +90,7 @@ int			ft_wchar(int *len, va_list arg)
 	return (1);
 }
 
-int		ft_adresse(int *len, va_list arg)
+int		ft_adresse(va_list arg, t_h *h)
 {
 	uintmax_t		addr;
 	char			*str;
