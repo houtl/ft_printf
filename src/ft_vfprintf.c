@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 15:02:10 by thou              #+#    #+#             */
-/*   Updated: 2017/03/24 16:55:06 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/25 10:50:57 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static int	ft_printp(int *len, char *fmt, va_list arg)
 		return (ft_string(len, arg));
 	if (*fmt == 'S')
 		return (ft_wchar(len, arg));
+	if (*fmt == 'p')
+		return (ft_adresse(len, arg));
 	return (0);
 }
 

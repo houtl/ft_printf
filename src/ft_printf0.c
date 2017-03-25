@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 12:33:38 by thou              #+#    #+#             */
-/*   Updated: 2017/03/24 17:16:01 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/25 11:46:31 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_persent(int *len)
 
 int ft_string(int *len, va_list arg)
 {
-	char	*str;
+	char			*str;
 
 	str = va_arg(arg, char*);
 	write(1, str, ft_strlen(str));
@@ -74,5 +74,24 @@ int			ft_wchar(int *len, va_list arg)
 	}
 	*str = 0;
 	write(1, dst, ft_strlen((char*)dst));
+	return (1);
+}
+
+int		ft_adresse(int *len, va_list arg)
+{
+	uintmax_t		addr;
+	uintmax_t		i;
+	int				j;
+	char			*str;
+
+	addr = (uintmax_t)va_arg(arg, unsigned int*);
+	i = addr;
+	write(1, "0x", 2);
+	str = ft_itoa_base(i, 16);
+	j = -1;
+	while (str[++j])
+		str[j] = ft_tolower(str[j]);
+	write(1, str, ft_strlen(str));
+	*len += (ft_strlen(str) + 2);
 	return (1);
 }

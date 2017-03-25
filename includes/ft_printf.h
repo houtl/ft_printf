@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 14:48:41 by thou              #+#    #+#             */
-/*   Updated: 2017/03/24 16:26:41 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/25 10:58:28 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int	ft_vfprintf(const char *format, va_list arg);
 int	ft_persent(int *len);
 int	ft_string(int *len, va_list arg);
 int	ft_wchar(int *len, va_list arg);
+int	ft_adresse(int *len, va_list arg);
 
 #endif

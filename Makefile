@@ -6,7 +6,7 @@
 #    By: thou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 16:17:53 by thou              #+#    #+#              #
-#    Updated: 2017/03/24 17:11:59 by thou             ###   ########.fr        #
+#    Updated: 2017/03/25 11:04:47 by thou             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,12 @@ OBJ_DIR		=	obj/
 OBJ			=	$(addprefix $(OBJ_DIR), $(SRC_BASE:.c=.o))
 LIB			=	libft
 LIB_SRC_DIR	=	$(LIB)/src/
-LIB_SRC_BASE=	libc/ft_strlen.c\
+LIB_SRC_BASE=	libc/ft_tolower.c\
+				libc/ft_strlen.c\
 				supplementaire/ft_putnbr.c\
 				supplementaire/ft_putchar.c\
-				supplementaire/ft_putchar_fd.c
+				supplementaire/ft_putchar_fd.c\
+				autres/ft_itoa_base.c
 LIB_OBJ_DIR	=	$(LIB)/obj/
 LIB_SRC		=	$(addprefix $(LIB_SRC_DIR), $(LIB_SRC_BASE))
 LIB_OBJ		=	$(addprefix $(LIB_OBJ_DIR), $(LIB_SRC_BASE:.c=.o))
