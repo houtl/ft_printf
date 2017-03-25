@@ -6,7 +6,7 @@
 #    By: thou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/07 16:17:53 by thou              #+#    #+#              #
-#    Updated: 2017/03/25 11:04:47 by thou             ###   ########.fr        #
+#    Updated: 2017/03/25 12:26:33 by thou             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ NAME		=	libftprintf.a
 FLAG		=	-Wall -Wextra -Werror
 INC			=	-Iincludes -Ilibft/includes
 SRC_DIR		=	src/
-SRC_BASE	=	ft_printf.c ft_vfprintf.c ft_printf0.c
+SRC_BASE	=	ft_printf.c ft_vfprintf.c ft_printf0.c ft_printf1.c
 SRC			=	$(addprefix $(SRC_DIR), $(SRC_BASE))
 OBJ_DIR		=	obj/
 OBJ			=	$(addprefix $(OBJ_DIR), $(SRC_BASE:.c=.o))
@@ -36,7 +36,8 @@ LIB_SRC_BASE=	libc/ft_tolower.c\
 				supplementaire/ft_putnbr.c\
 				supplementaire/ft_putchar.c\
 				supplementaire/ft_putchar_fd.c\
-				autres/ft_itoa_base.c
+				autres/ft_itoa_base.c\
+				autres/ft_uintmaxtoa_base.c
 LIB_OBJ_DIR	=	$(LIB)/obj/
 LIB_SRC		=	$(addprefix $(LIB_SRC_DIR), $(LIB_SRC_BASE))
 LIB_OBJ		=	$(addprefix $(LIB_OBJ_DIR), $(LIB_SRC_BASE:.c=.o))

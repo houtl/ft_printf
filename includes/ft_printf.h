@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 14:48:41 by thou              #+#    #+#             */
-/*   Updated: 2017/03/25 10:58:28 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/25 13:38:38 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,26 @@
 # include <stdarg.h>
 # include <stdlib.h>
 
+typedef struct	s_handle
+{
+	int		l;
+	int		ll;
+	int		hh;
+	int		h;
+	int		j;
+	int		z;
+	int		esp;
+	int		zero;
+	int		plus;
+	int		moin;
+	int		ns;
+}				t_h;
 
-int	ft_printf(const char *format, ...);
-int	ft_vfprintf(const char *format, va_list arg);
-int	ft_persent(int *len);
-int	ft_string(int *len, va_list arg);
-int	ft_wchar(int *len, va_list arg);
-int	ft_adresse(int *len, va_list arg);
+int				ft_printf(const char *format, ...);
+int				ft_vfprintf(const char *format, va_list arg);
+int				ft_persent(int *len);
+int				ft_string(int *len, va_list arg);
+int				ft_wchar(int *len, va_list arg);
+int				ft_adresse(int *len, va_list arg);
 
 #endif

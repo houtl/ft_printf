@@ -6,13 +6,28 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 15:02:10 by thou              #+#    #+#             */
-/*   Updated: 2017/03/25 10:50:57 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/25 13:38:33 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_printp(int *len, char *fmt, va_list arg)
+void		reset_handle(t_h *h)
+{
+	h->l = 0;
+	h->ll = 0;
+	h->hh = 0;
+	h->h = 0;
+	h->j = 0;
+	h->z = 0;
+	h->esp = 0;
+	h->zero =  0;
+	h->plus = 0;
+	h->moin = 0;
+	h->ns = 0;
+}
+
+static int	ft_printp(int *len, char *fmt, va_list arg, t_h *h)
 {
 	if (*fmt == '%')
 		return (ft_persent(len));
@@ -29,9 +44,12 @@ int	ft_vfprintf(const char *format, va_list arg)
 {
 	char	*fmt;
 	int		len;
+	char	*handle;
+	t_h		h;
 
 	fmt = (char*)format;
 	len = 0;
+	handle = "lhjz# 0123456789+-"
 	while (*fmt)
 	{
 		while (*fmt && *fmt != '%')
@@ -39,10 +57,15 @@ int	ft_vfprintf(const char *format, va_list arg)
 			write(1, fmt++, 1);
 			len++;
 		}
+		while (ft_strcat(handle, *fmt))
+			input_handle(*(fmt++, &h));
 		if (*fmt)
 		{
 			fmt++;
-			fmt += ft_printp(&len, fmt, arg);
+			while (ft_strcat(handle, *fmt))
+				input_handle(*(fmt++, &h));
+			fmt += ft_printp(&len, fmt, arg, &h);
+			reset_handle(&h);
 		}
 	}
 	return (len);
