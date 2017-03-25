@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 15:02:10 by thou              #+#    #+#             */
-/*   Updated: 2017/03/25 13:38:33 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/25 13:40:16 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	ft_printp(int *len, char *fmt, va_list arg, t_h *h)
 	if (*fmt == '%')
 		return (ft_persent(len));
 	if (*fmt == 's')
-		return (ft_string(len, arg));
+		return (ft_string(len, arg, h));
 	if (*fmt == 'S')
 		return (ft_wchar(len, arg));
 	if (*fmt == 'p')
