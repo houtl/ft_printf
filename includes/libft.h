@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 10:22:36 by thou              #+#    #+#             */
-/*   Updated: 2017/03/25 12:02:26 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/26 16:59:05 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct	s_list
 
 char			*ft_uintmaxtoa_base(uintmax_t value, int base, char x);
 int				ft_atoi_base(const char *str, int base);
+char			*ft_strjoinfree2(char const *s1, char const *s2);
 char			*ft_strjoinfree(char const *s1, char const *s2);
 char			*ft_strjoinchar(char const *s1, char c);
 char			*ft_strsubc(char *src, char c);
