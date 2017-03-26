@@ -6,29 +6,26 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 18:20:51 by thou              #+#    #+#             */
-/*   Updated: 2017/03/25 18:25:43 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/26 18:38:33 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_printnesp(t_h *h, char *str)
+#include "ft_printf.h"
+
+char	*ft_printnesp(t_h *h, char *str)
 {
 	int	i;
-	int len;
 
 	i = ft_strlen(str);
-	len = i
 	while (h->nb > i && h->moin != 1)
 	{
-		write(1, " ", 1);
-		len++;
+		str = ft_strjoinfree2(ft_strdup(" "), str);
 		h->nb--;
 	}
-	write(1, str, i);
 	while (h->nb > i && h->moin == 1)
 	{
-		write(1, " ", 1);
-		len++;
+		str = ft_strjoinfree2(str, ft_strdup(" "));
 		h->nb--;
 	}
-	return (len);
+	return (str);
 }

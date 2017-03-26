@@ -6,7 +6,7 @@
 #    By: thou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 17:40:06 by thou              #+#    #+#              #
-#    Updated: 2017/03/26 17:12:03 by thou             ###   ########.fr        #
+#    Updated: 2017/03/26 18:36:15 by thou             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ BONUS					=	ft_lstadd.c\
 AUTRES					=	ft_atoi_base.c ft_clamp.c ft_isupper.c ft_strjoinchar.c ft_strsubc.c ft_islower.c
 AUTRES					+=	ft_itoa_base.c ft_strjoinfree.c ft_wordnb.c ft_uintmaxtoa_base.c ft_strjoinfree2.c
 GET_NEXT_LINE			=	get_next_line.c
-FT_PRINTF				=	ft_printf.c ft_vfprintf.c ft_printf0.c ft_printf1.c
+FT_PRINTF				=	ft_printf.c ft_vfprintf.c ft_printf0.c ft_printf1.c ft_printnesp.c
 SRC_BASE				=	$(addprefix $(LIBC_DIR), $(LIBC))\
 							$(addprefix $(SUPPLEMENTAIRE_DIR), $(SUPPLEMENTAIRE))\
 							$(addprefix $(BONUS_DIR), $(BONUS))\

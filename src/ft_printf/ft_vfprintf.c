@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 15:02:10 by thou              #+#    #+#             */
-/*   Updated: 2017/03/25 18:11:01 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/26 18:16:27 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void		reset_handle(t_h *h)
 	h->ns = 0;
 }
 
-static int	ft_printp(char *fmt, va_list arg, t_h *h)
+static char	*ft_printp(char *fmt, va_list arg, t_h *h)
 {
 	if (*fmt == '%')
 		return (ft_persent(h));
@@ -65,34 +65,33 @@ static int	ft_printp(char *fmt, va_list arg, t_h *h)
 		return (ft_wchar(arg, h));
 	if (*fmt == 'p')
 		return (ft_adresse(arg, h));
-	return (0);
+	return (ft_strnew(0));
 }
 
-int	ft_vfprintf(const char *format, va_list arg)
+int			ft_vfprintf(const char *format, va_list arg)
 {
 	char	*fmt;
-	int		len;
 	char	*handle;
+	char	*dst;
 	t_h		h;
 
 	fmt = (char*)format;
-	len = 0;
 	handle = "lhjz# 0123456789+-";
+	dst = ft_strnew(0);
 	while (*fmt)
 	{
+		dst = ft_strjoinfree2(dst, ft_strsubc(fmt, '%'));
 		while (*fmt && *fmt != '%')
-		{
-			write(1, fmt++, 1);
-			len++;
-		}
+			fmt++;
 		if (*fmt)
 		{
 			fmt++;
 			while (ft_strchr(handle, *fmt))
 				input_handle(fmt++, &h);
-			len += ft_printp(fmt++, arg, &h);
+			dst = ft_strjoinfree2(dst, ft_printp(fmt++, arg, &h));
 			reset_handle(&h);
 		}
 	}
-	return (len);
+	h.len = write(1, dst, ft_strlen(dst));
+	return (h.len);
 }

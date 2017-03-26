@@ -6,40 +6,36 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 12:33:38 by thou              #+#    #+#             */
-/*   Updated: 2017/03/25 18:26:54 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/26 18:29:30 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_persent(t_h *h)
+char		*ft_persent(t_h *h)
 {
-	int				len;
-	len = 1;
+	char			*dst;
+
+	dst = ft_strdup("%");
 	while (h->nb > 1 && h->moin != 1)
 	{
-		write(1, " ", 1);
-		len++;
+		dst = ft_strjoinfree2(ft_strdup(" "), dst);
 		h->nb--;
 	}
-	write(1, "%", 1);
 	while (h->nb > 1 && h->moin == 1)
 	{
-		write(1, " ", 1);
-		len++;
+		dst = ft_strjoinfree(dst, " ");
 		h->nb--;
 	}
-	return (len);
+	return (dst);
 }
 
-int ft_string(va_list arg, t_h *h)
+char	*ft_string(va_list arg, t_h *h)
 {
 	char			*str;
-	int				len;
 
-	str = va_arg(arg, char*);
-	len = ft_printnesp(h, str);
-	return (len);
+	str = ft_strdup(va_arg(arg, char*));
+	return (ft_printnesp(h, str));
 }
 
 static int	wchar_to_char(unsigned char **s, wchar_t c)
@@ -69,7 +65,7 @@ static int	wchar_to_char(unsigned char **s, wchar_t c)
 	return (0);
 }
 
-int			ft_wchar(va_list arg, t_h *h)
+char		*ft_wchar(va_list arg, t_h *h)
 {
 	wchar_t			*w;
 	unsigned char	*str;
@@ -80,25 +76,18 @@ int			ft_wchar(va_list arg, t_h *h)
 	str = dst;
 	i = -1;
 	while (w[++i])
-	{
-		*len += 1;
 		if (wchar_to_char(&str, w[i]) == -1)
-			return (1);
-	}
+			return (ft_strnew(0));
 	*str = 0;
-	write(1, dst, ft_strlen((char*)dst));
-	return (1);
+	return (ft_printnesp(h, ft_strdup((char*)dst)));
 }
 
-int		ft_adresse(va_list arg, t_h *h)
+char		*ft_adresse(va_list arg, t_h *h)
 {
 	uintmax_t		addr;
 	char			*str;
 
 	addr = (uintmax_t)va_arg(arg, unsigned int*);
-	write(1, "0x", 2);
-	str = ft_uintmaxtoa_base(addr, 16, 'x');
-	write(1, str, ft_strlen(str));
-	*len += (ft_strlen(str) + 2);
-	return (1);
+	str = ft_strjoinfree2(ft_strdup("0x"), ft_uintmaxtoa_base(addr, 16, 'x'));
+	return (ft_printnesp(h, str));
 }
