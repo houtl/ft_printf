@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 15:02:10 by thou              #+#    #+#             */
-/*   Updated: 2017/03/27 14:02:51 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/27 17:45:01 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,10 @@ static char	*ft_printp(char *fmt, va_list arg, t_h *h)
 		return (ft_wchar(arg, h));
 	if (*fmt == 'p')
 		return (ft_adresse(arg, h));
+	if (*fmt == 'x')
+		return (ft_hex(arg, h));
+	if (*fmt == 'X')
+		return (ft_hexup(arg, h));
 	return (ft_strnew(0));
 }
 

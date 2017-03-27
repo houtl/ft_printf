@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 14:48:41 by thou              #+#    #+#             */
-/*   Updated: 2017/03/27 13:01:32 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/27 15:15:01 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,7 @@ char			*ft_string(va_list arg, t_h *h);
 char			*ft_wchar(va_list arg, t_h *h);
 char			*ft_adresse(va_list arg, t_h *h);
 char			*ft_printnesp(t_h *h, char *str);
+char			*ft_hex(va_list arg, t_h *h);
+char			*ft_hexup(va_list arg, t_h *h);
 
 #endif
