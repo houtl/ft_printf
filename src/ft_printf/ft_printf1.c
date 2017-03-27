@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 12:25:54 by thou              #+#    #+#             */
-/*   Updated: 2017/03/27 15:29:15 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/27 18:18:33 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ char	*ft_hex(va_list arg, t_h *h)
 	unsigned int	i;
 
 	dst = ft_strnew(0);
-	if (h->ll == 1 || h->l == 1 || h->hh == 1 || h->h == 1)
-		return (ft_printlh(va_list arg, t_h *h));
 	if (h->ns == 1)
 		dst = ft_strjoinfree(dst, "0x");
+	if (h->ll == 1 || h->l == 1 || h->hh == 1 || h->h == 1)
+		return (ft_strjoinfree2(dst, ft_printlh(arg, *h, x)));
 	i = va_arg(arg, unsigned int);
 	dst = ft_strjoinfree2(dst, ft_unsignedintoa_base(i, 16, 'x'));
 	return (ft_printnesp(h, dst));
