@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 14:48:41 by thou              #+#    #+#             */
-/*   Updated: 2017/03/26 17:25:54 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/27 13:01:32 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct	s_handle
 }				t_h;
 
 int				ft_printf(const char *format, ...);
-int				ft_vfprintf(const char *format, va_list arg);
+int				ft_vfprintf(char *format, va_list arg);
 char			*ft_persent(t_h *h);
 char			*ft_string(va_list arg, t_h *h);
 char			*ft_wchar(va_list arg, t_h *h);

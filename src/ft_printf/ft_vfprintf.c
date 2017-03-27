@@ -6,18 +6,35 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 15:02:10 by thou              #+#    #+#             */
-/*   Updated: 2017/03/26 18:16:27 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/27 14:02:51 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		input_handle(char *fmt, t_h *h)
+static void	input_handlehl(char *fmt, t_h *h)
 {
 	if (*fmt == 'l')
-		(h->l == 1) ? (h->ll = 1) : (h->l = 1);
+	{
+		if (h->l == 1)
+			h->ll = 1;
+		else
+			h->l = 1;
+	}
 	else if (*fmt == 'h')
-		(h->h == 1) ? (h->hh = 1) : (h->h = 1);
+	{
+		if (h->h == 1)
+			h->hh = 1;
+		else
+			h->h = 1;
+
+	}
+}
+
+void		input_handle(char *fmt, t_h *h)
+{
+	if (*fmt == 'l' || *fmt == 'h')
+		input_handlehl(fmt, h);
 	else if (*fmt == 'j')
 		h->j = 1;
 	else if (*fmt == 'z')
@@ -49,10 +66,11 @@ void		reset_handle(t_h *h)
 	h->j = 0;
 	h->z = 0;
 	h->esp = 0;
-	h->zero =  0;
+	h->zero = 0;
 	h->plus = 0;
 	h->moin = 0;
 	h->ns = 0;
+	h->nb = 0;
 }
 
 static char	*ft_printp(char *fmt, va_list arg, t_h *h)
@@ -68,15 +86,13 @@ static char	*ft_printp(char *fmt, va_list arg, t_h *h)
 	return (ft_strnew(0));
 }
 
-int			ft_vfprintf(const char *format, va_list arg)
+int			ft_vfprintf(char *fmt, va_list arg)
 {
-	char	*fmt;
 	char	*handle;
 	char	*dst;
 	t_h		h;
 
-	fmt = (char*)format;
-	handle = "lhjz# 0123456789+-";
+	handle = "lhjz# 0123456789+-.";
 	dst = ft_strnew(0);
 	while (*fmt)
 	{
@@ -86,12 +102,13 @@ int			ft_vfprintf(const char *format, va_list arg)
 		if (*fmt)
 		{
 			fmt++;
+			reset_handle(&h);
 			while (ft_strchr(handle, *fmt))
 				input_handle(fmt++, &h);
 			dst = ft_strjoinfree2(dst, ft_printp(fmt++, arg, &h));
-			reset_handle(&h);
 		}
 	}
 	h.len = write(1, dst, ft_strlen(dst));
+	free(dst);
 	return (h.len);
 }

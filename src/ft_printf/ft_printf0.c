@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 12:33:38 by thou              #+#    #+#             */
-/*   Updated: 2017/03/26 18:29:30 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/27 13:55:22 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char		*ft_persent(t_h *h)
 	return (dst);
 }
 
-char	*ft_string(va_list arg, t_h *h)
+char		*ft_string(va_list arg, t_h *h)
 {
 	char			*str;
 
@@ -88,6 +88,6 @@ char		*ft_adresse(va_list arg, t_h *h)
 	char			*str;
 
 	addr = (uintmax_t)va_arg(arg, unsigned int*);
-	str = ft_strjoinfree2(ft_strdup("0x"), ft_uintmaxtoa_base(addr, 16, 'x'));
+	str = ft_strjoinfree(ft_strdup("0x"), ft_uintmaxtoa_base(addr, 16, 'x'));
 	return (ft_printnesp(h, str));
 }

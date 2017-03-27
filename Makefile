@@ -6,7 +6,7 @@
 #    By: thou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 17:40:06 by thou              #+#    #+#              #
-#    Updated: 2017/03/26 18:36:15 by thou             ###   ########.fr        #
+#    Updated: 2017/03/27 12:09:39 by thou             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,7 @@ SRCS					=	$(addprefix $(SRC_DIR), $(SRC_BASE))
 OBJS					=	$(addprefix $(OBJ_DIR), $(SRC_BASE:.c=.o))
 NB						=	$(words $(SRC_BASE))
 INDEX					=	1	
-DELTA					=	$$(expr $$(tput cols) - 48)
+DELTA					=	$$(expr $$(tput cols) - 54)
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 11:52:44 by thou              #+#    #+#             */
-/*   Updated: 2017/03/25 12:23:20 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/27 13:56:48 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ static int	ft_nb_base(uintmax_t value, int base)
 	return (i);
 }
 
-char	*ft_uintmaxtoa_base(uintmax_t value, int base, char x)
+char		*ft_uintmaxtoa_base(uintmax_t value, int base, char x)
 {
 	int			i;
 	uintmax_t	n;
 	char		*c;
 	char		*b;
 
-	b = (x = 'x') ? "0123456789abcdef" : "0123456789ABCDEF";
+	b = ((x == 'x') ? "0123456789abcdef" : "0123456789ABCDEF");
 	c = (char*)malloc(sizeof(char) * (ft_nb_base(value, base) + 1));
 	if (!c)
 		return (NULL);
