@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 15:02:10 by thou              #+#    #+#             */
-/*   Updated: 2017/03/27 17:45:01 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/28 18:03:54 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,34 +27,40 @@ static void	input_handlehl(char *fmt, t_h *h)
 			h->hh = 1;
 		else
 			h->h = 1;
-
 	}
-}
-
-void		input_handle(char *fmt, t_h *h)
-{
-	if (*fmt == 'l' || *fmt == 'h')
-		input_handlehl(fmt, h);
 	else if (*fmt == 'j')
 		h->j = 1;
 	else if (*fmt == 'z')
 		h->z = 1;
-	else if (*fmt == ' ')
+}
+
+void		input_handle(char **fmt, t_h *h)
+{
+	if (**fmt == 'l' || **fmt == 'h' || **fmt == 'j' || **fmt == 'z')
+		input_handlehl(*fmt, h);
+	else if (**fmt == ' ')
 		h->esp = 1;
-	else if (*fmt == '0')
-		h->zero = 1;
-	else if (*fmt == '+')
+	else if (**fmt == '+')
 		h->plus = 1;
-	else if (*fmt == '-')
+	else if (**fmt == '-')
 		h->moin = 1;
-	else if (*fmt == '#')
+	else if (**fmt == '0')
+		h->zero = 1;
+	else if (**fmt == '#')
 		h->ns = 1;
-	else if (ft_isdigit(*fmt))
+	else if (ft_isdigit(**fmt))
 	{
-		h->nb = ft_atoi(fmt);
-		while (ft_isdigit(*(fmt + 1)))
-			fmt++;
+		h->nb = ft_atoi(*fmt);
+		while (ft_isdigit(*(*fmt + 1)))
+			(*fmt)++;
 	}
+	else if (**fmt == '.')
+	{
+		h->ps = (ft_atoi((*fmt + 1)) == 0) ? -1 : ft_atoi((*fmt + 1));
+		while (ft_isdigit(*(*fmt + 1)))
+			(*fmt)++;
+	}
+	(*fmt)++;
 }
 
 void		reset_handle(t_h *h)
@@ -71,6 +77,7 @@ void		reset_handle(t_h *h)
 	h->moin = 0;
 	h->ns = 0;
 	h->nb = 0;
+	h->isnb = 0;
 }
 
 static char	*ft_printp(char *fmt, va_list arg, t_h *h)
@@ -108,7 +115,7 @@ int			ft_vfprintf(char *fmt, va_list arg)
 			fmt++;
 			reset_handle(&h);
 			while (ft_strchr(handle, *fmt))
-				input_handle(fmt++, &h);
+				input_handle(&fmt, &h);
 			dst = ft_strjoinfree2(dst, ft_printp(fmt++, arg, &h));
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 12:33:38 by thou              #+#    #+#             */
-/*   Updated: 2017/03/27 13:55:22 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/28 18:28:13 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,12 @@ char		*ft_string(va_list arg, t_h *h)
 {
 	char			*str;
 
-	str = ft_strdup(va_arg(arg, char*));
+	if (!(str = va_arg(arg, char*)))
+		return (ft_strdup("(null)"));
+	else
+		str = ft_strdup(str);
+	if (h->ps != 0)
+		str[h->ps] = 0;
 	return (ft_printnesp(h, str));
 }
 

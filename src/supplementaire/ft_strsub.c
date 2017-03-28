@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 11:41:40 by thou              #+#    #+#             */
-/*   Updated: 2016/11/20 13:45:00 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/28 17:45:40 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	if (start > ft_strlen(s))
 		return (NULL);
-	dst = malloc(len + 1);
+	dst = (char*)malloc(sizeof(char) * (len + 1));
 	if (!dst)
 		return (NULL);
 	a += start;

@@ -6,7 +6,7 @@
 #    By: thou <marvin@42.fr>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 17:40:06 by thou              #+#    #+#              #
-#    Updated: 2017/03/28 11:33:08 by thou             ###   ########.fr        #
+#    Updated: 2017/03/28 13:20:09 by thou             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,9 +68,9 @@ BONUS					=	ft_lstadd.c\
 							ft_lstnew.c
 AUTRES					=	ft_atoi_base.c ft_clamp.c ft_isupper.c ft_strjoinchar.c ft_strsubc.c ft_islower.c
 AUTRES					+=	ft_itoa_base.c ft_strjoinfree.c ft_wordnb.c ft_uintmaxtoa_base.c ft_strjoinfree2.c
-AUTRES					+=	ft_unsignedintoa_base.c ft_ltoa_base.c ft_lltoa_base.c
+AUTRES					+=	ft_unsignedintoa_base.c ft_ltoa_base.c ft_lltoa_base.c ft_intmaxtoa_base.c
 GET_NEXT_LINE			=	get_next_line.c
-FT_PRINTF				=	ft_printf.c ft_vfprintf.c ft_printf0.c ft_printf1.c ft_printnesp.c
+FT_PRINTF				=	ft_printf.c ft_vfprintf.c ft_printf0.c ft_printf1.c ft_printnesp.c ft_printfhl.c ft_printfh.c
 SRC_BASE				=	$(addprefix $(LIBC_DIR), $(LIBC))\
 							$(addprefix $(SUPPLEMENTAIRE_DIR), $(SUPPLEMENTAIRE))\
 							$(addprefix $(BONUS_DIR), $(BONUS))\
