@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 17:46:20 by thou              #+#    #+#             */
-/*   Updated: 2017/03/27 18:17:31 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/28 11:09:06 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,52 @@
 static char	*ft_printll(va_list arg, t_h *h, char c)
 {
 	if (c == 'x')
-		return (ft_longlongtoa_base((va_arg(arg, long long)), 16, 'x'));
+		return (ft_lltoa_base((va_arg(arg, long long)), 16, 'x'));
 	if (c == 'X')
-		return (ft_longlongtoa_base((va_arg(arg, long long)), 16, 'X'));
+		return (ft_lltoa_base((va_arg(arg, long long)), 16, 'X'));
 	if (c == 'o' || c == 'O')
-		return (ft_longlongtoa_base((va_arg(arg, long long)), 8, 'o'));
+		return (ft_lltoa_base((va_arg(arg, long long)), 8, 'o'));
 	if (c == 'd' || c == 'D')
-		return (ft_longlongtoa_base((va_arg(arg, long long)), 10, 'x'));
+		return (ft_lltoa_base((va_arg(arg, long long)), 10, 'x'));
 	return (NULL);
 }
 
 static char *ft_printl(va_list arg, t_h *h, char c)
 {
 	if (c == 'x')
-		return (ft_longtoa_base((va_arg(arg, long)), 16, 'x'));
+		return (ft_ltoa_base((va_arg(arg, long)), 16, 'x'));
 	if (c == 'X')
-		return (ft_longtoa_base((va_arg(arg, long)), 16, 'X'));
+		return (ft_ltoa_base((va_arg(arg, long)), 16, 'X'));
 	if (c == 'o' || c == 'O')
-		return (ft_longtoa_base((va_arg(arg, long)), 8, 'o'));
+		return (ft_ltoa_base((va_arg(arg, long)), 8, 'o'));
 	if (c == 'd' || c == 'D')
-		return (ft_longtoa_base((va_arg(arg, long)), 10, 'x'));
+		return (ft_ltoa_base((va_arg(arg, long)), 10, 'x'));
+	return (NULL);
+}
+
+static char *ft_printh(va_list arg, t_h *h, char c)
+{
+	if (c == 'x')
+		return (ft_itoa_base(((int)va_arg(arg, short)), 16, 'x'));
+	if (c == 'X')
+		return (ft_itoa_base(((int)va_arg(arg, short)), 16, 'X'));
+	if (c == 'o' || c == 'O')
+		return (ft_itoa_base(((int)va_arg(arg, short)), 8, 'o'));
+	if (c == 'd' || c == 'D')
+		return (ft_itoa_base(((int)va_arg(arg, short)), 10, 'x'));
+	return (NULL);
+}
+
+static char *ft_printhh(va_list arg, t_h *h, char c)
+{
+	if (c == 'x')
+		return (ft_itoa_base((va_arg(arg, char)), 16, 'x'));
+	if (c == 'X')
+		return (ft_itoa_base((va_arg(arg, char)), 16, 'X'));
+	if (c == 'o' || c == 'O')
+		return (ft_itoa_base((va_arg(arg, char)), 8, 'o'));
+	if (c == 'd' || c == 'D')
+		return (ft_itoa_base((va_arg(arg, char)), 10, 'x'));
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 14:55:49 by thou              #+#    #+#             */
-/*   Updated: 2017/03/27 15:22:56 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/28 11:26:51 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_nb_base(unsigned int  value, int base)
 {
-	int			i;
+	int				i;
 
 	i = 1;
 	while (value / base != 0)

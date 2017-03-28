@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 10:22:36 by thou              #+#    #+#             */
-/*   Updated: 2017/03/27 15:24:18 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/28 11:33:51 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
-char			*ft_longtoa_base(long value, int base, char x);
+char			*ft_lltoa_base(long long value, int base, char x);
+char			*ft_ltoa_base(long value, int base, char x);
 char			*ft_unsignedintoa_base(unsigned int value, int base, char x);
 char			*ft_uintmaxtoa_base(uintmax_t value, int base, char x);
 int				ft_atoi_base(const char *str, int base);
@@ -37,7 +38,7 @@ char			*ft_strsubc(char *src, char c);
 double			ft_clamp(double x, double min, double max);
 int				ft_islower(int c);
 int				ft_isupper(int c);
-char			*ft_itoa_base(int value, int base);
+char			*ft_itoa_base(int value, int base, char x);
 int				ft_wordnb(const char *s, char c);
 void			*ft_memset(void *s, int c, size_t n);
 void			ft_bzero(void *s, size_t n);

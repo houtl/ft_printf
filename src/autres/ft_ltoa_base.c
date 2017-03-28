@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_long_base.c                                     :+:      :+:    :+:   */
+/*   ft_ltoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/27 15:21:28 by thou              #+#    #+#             */
-/*   Updated: 2017/03/27 17:41:23 by thou             ###   ########.fr       */
+/*   Created: 2017/03/28 11:22:10 by thou              #+#    #+#             */
+/*   Updated: 2017/03/28 11:31:58 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 static int	ft_nb_base(long value, int base)
 {
-	int			i;
+	int		i;
 
 	i = 1;
+	if (base == 10 && value < 0)
+		i++;
 	while (value / base != 0)
 	{
 		i++;
@@ -25,20 +27,26 @@ static int	ft_nb_base(long value, int base)
 	return (i);
 }
 
-char		*ft_longtoa_base(long value, int base, char x)
+char		*ft_ltoa_base(long value, int base, char x)
 {
-	int				i;
-	long			n;
-	char			*c;
-	char			*b;
+	long	i;
+	long	n;
+	char	*c;
+	char	*b;
 
-	b = ((x == 'x') ? "0123456789abcdef" : "0123456789ABCDEF");
+	b = (ft_isupper(x)) ? "0123456789ABCDEF" : "0123456789abcdef";
 	c = (char*)malloc(sizeof(char) * (ft_nb_base(value, base) + 1));
 	if (!c)
 		return (NULL);
 	i = ft_nb_base(value, base);
 	c[i--] = 0;
 	n = value;
+	if (value < 0)
+	{
+		n = -n;
+		if (base == 10)
+			c[0] = '-';
+	}
 	while (n / base != 0)
 	{
 		c[i--] = *(b + (n % base));

@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_lltoa_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/21 14:47:41 by thou              #+#    #+#             */
-/*   Updated: 2017/03/28 11:31:40 by thou             ###   ########.fr       */
+/*   Created: 2017/03/28 11:24:54 by thou              #+#    #+#             */
+/*   Updated: 2017/03/28 11:34:36 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_nb_base(int value, int base)
+static int	ft_nb_base(long long value, int base)
 {
-	int		i;
+	int			i;
 
 	i = 1;
 	if (base == 10 && value < 0)
@@ -27,12 +27,12 @@ static int	ft_nb_base(int value, int base)
 	return (i);
 }
 
-char		*ft_itoa_base(int value, int base, char x)
+char		*ft_lltoa_base(long long value, int base, char x)
 {
-	int		i;
-	long	n;
-	char	*c;
-	char	*b;
+	long long	i;
+	long long	n;
+	char		*c;
+	char		*b;
 
 	b = (ft_isupper(x)) ? "0123456789ABCDEF" : "0123456789abcdef";
 	c = (char*)malloc(sizeof(char) * (ft_nb_base(value, base) + 1));
