@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 14:48:41 by thou              #+#    #+#             */
-/*   Updated: 2017/03/29 11:11:22 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/29 13:10:21 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct	s_handle
 	int		ps;
 }				t_h;
 
+char			*ft_unsignedint(va_list arg, t_h *h);
 char			*ft_oct(va_list arg, t_h *h);
 char			*ft_char(va_list arg, t_h *h);
 char			*ft_intdi(va_list arg, t_h *h);
