@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 18:20:51 by thou              #+#    #+#             */
-/*   Updated: 2017/03/28 18:11:52 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/29 11:58:36 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,29 @@ static char	*ft_changxo(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] && str[i] != 'x')
+	while (str[i] && ft_strchr("xX+-", str[i]) == 0)
 		i++;
 	if (str[i] == 0)
 		return (str);
 	else if (i > 1 && str[0] == '0')
 	{
-		str[1] = 'x';
+		if (str[i] == 'x' || str[i] == 'X')
+			str[1] = str[i];
+		else
+			str[0] = str[i];
 		str[i] = '0';
 	}
 	return (str);
 }
 
-char	*ft_printnesp(t_h *h, char *str)
+char		*ft_printnesp(t_h *h, char *str)
 {
 	int	i;
 
 	i = ft_strlen(str);
 	while (h->nb > i && h->moin != 1)
 	{
-		if (h->zero == 1 && h->isnb == 1)
+		if (h->zero == 1)
 			str = ft_strjoinfree2(ft_strdup("0"), str);
 		else
 			str = ft_strjoinfree2(ft_strdup(" "), str);

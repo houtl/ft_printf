@@ -6,21 +6,20 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 12:33:31 by thou              #+#    #+#             */
-/*   Updated: 2017/03/28 13:52:57 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/29 09:44:56 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
 static char	*ft_printj(va_list arg, char c)
 {
 	if (c == 'x')
-		return (ft_uintmaxtoa_base(((uintmax_t)va_arg(arg, unsigned int*)), 16, 'x'));
+		return (ft_uimtoa_base((uintmax_t)va_arg(arg, unsigned int*), 16, 'x'));
 	if (c == 'X')
-		return (ft_intmaxtoa_base((va_arg(arg, intmax_t)), 16, 'X'));
+		return (ft_uimtoa_base((uintmax_t)va_arg(arg, unsigned int*), 16, 'X'));
 	if (c == 'o' || c == 'O')
-		return (ft_intmaxtoa_base((va_arg(arg, intmax_t)), 8, 'o'));
+		return (ft_uimtoa_base((uintmax_t)va_arg(arg, unsigned int*), 8, 'x'));
 	if (c == 'd' || c == 'D')
 		return (ft_intmaxtoa_base((va_arg(arg, intmax_t)), 10, 'x'));
 	return (NULL);

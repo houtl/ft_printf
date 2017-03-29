@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printhl.c                                      :+:      :+:    :+:   */
+/*   ft_printhl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 17:46:20 by thou              #+#    #+#             */
-/*   Updated: 2017/03/28 13:18:43 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/29 12:36:06 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,54 +15,56 @@
 static char	*ft_print_ll(va_list arg, char c)
 {
 	if (c == 'u' || c == 'U')
-		return (ft_
+		return (ft_uimtoa_base((uintmax_t)(va_arg(arg, unsigned long long)), 10, 'x'));
 	if (c == 'x')
-		return (ft_lltoa_base((va_arg(arg, unsigned long long)), 16, 'x'));
+		return (ft_uimtoa_base((uintmax_t)(va_arg(arg, unsigned long long)), 16, 'x'));
 	if (c == 'X')
-		return (ft_lltoa_base((va_arg(arg, unsigned long long)), 16, 'X'));
+		return (ft_uimtoa_base((uintmax_t)(va_arg(arg, unsigned long long)), 16, 'X'));
 	if (c == 'o' || c == 'O')
-		return (ft_lltoa_base((va_arg(arg, unsigned long long)), 8, 'o'));
+		return (ft_uimtoa_base((uintmax_t)(va_arg(arg, unsigned long long)), 8, 'o'));
 	if (c == 'd' || c == 'D' || c == 'i')
-		return (ft_lltoa_base((va_arg(arg, long long)), 10, 'x'));
+		return (ft_intmaxtoa_base((intmax_t)(va_arg(arg, long long)), 10, 'x'));
 	return (NULL);
 }
 
-static char *ft_print_l(va_list arg, char c)
+static char	*ft_print_l(va_list arg, char c)
 {
+	if (c == 'u' || c == 'U')
+		return (ft_uimtoa_base((uintmax_t)(va_arg(arg, unsigned long)), 10, 'x'));
 	if (c == 'x')
-		return (ft_ltoa_base((va_arg(arg, long)), 16, 'x'));
+		return (ft_uimtoa_base((uintmax_t)(va_arg(arg, unsigned long)), 16, 'x'));
 	if (c == 'X')
-		return (ft_ltoa_base((va_arg(arg, long)), 16, 'X'));
+		return (ft_uimtoa_base((uintmax_t)(va_arg(arg, unsigned long)), 16, 'X'));
 	if (c == 'o' || c == 'O')
-		return (ft_ltoa_base((va_arg(arg, long)), 8, 'o'));
+		return (ft_uimtoa_base((uintmax_t)(va_arg(arg, unsigned long)), 8, 'o'));
 	if (c == 'd' || c == 'D' || c == 'i')
-		return (ft_ltoa_base((va_arg(arg, long)), 10, 'x'));
+		return (ft_intmaxtoa_base((intmax_t)(va_arg(arg, long)), 10, 'x'));
 	return (NULL);
 }
 
-static char *ft_print_h(va_list arg, char c)
+static char	*ft_print_h(va_list arg, char c)
 {
 	if (c == 'x')
-		return (ft_itoa_base(((short)va_arg(arg, int)), 16, 'x'));
+		return (ft_uimtoa_base(((uintmax_t)(unsigned short)va_arg(arg, int)), 16, 'x'));
 	if (c == 'X')
-		return (ft_itoa_base(((short)va_arg(arg, int)), 16, 'X'));
+		return (ft_uimtoa_base(((uintmax_t)(unsigned short)va_arg(arg, int)), 16, 'X'));
 	if (c == 'o' || c == 'O')
-		return (ft_itoa_base(((short)va_arg(arg, int)), 8, 'o'));
+		return (ft_uimtoa_base(((uintmax_t)(unsigned short)va_arg(arg, int)), 8, 'o'));
 	if (c == 'd' || c == 'D' || c == 'i')
-		return (ft_itoa_base(((short)va_arg(arg, int)), 10, 'x'));
+		return (ft_intmaxtoa_base(((intmax_t)(short)va_arg(arg, int)), 10, 'x'));
 	return (NULL);
 }
 
-static char *ft_print_hh(va_list arg, char c)
+static char	*ft_print_hh(va_list arg, char c)
 {
 	if (c == 'x')
-		return (ft_itoa_base(((char)va_arg(arg, int)), 16, 'x'));
+		return (ft_uimtoa_base(((uintmax_t)(unsigned char)va_arg(arg, int)), 16, 'x'));
 	if (c == 'X')
-		return (ft_itoa_base(((char)va_arg(arg, int)), 16, 'X'));
+		return (ft_uimtoa_base(((uintmax_t)(unsigned char)va_arg(arg, int)), 16, 'X'));
 	if (c == 'o' || c == 'O')
-		return (ft_itoa_base(((char)va_arg(arg, int)), 8, 'o'));
+		return (ft_uimtoa_base(((uintmax_t)(unsigned char)va_arg(arg, int)), 8, 'o'));
 	if (c == 'd' || c == 'D' || c == 'i')
-		return (ft_itoa_base(((char)va_arg(arg, int)), 10, 'x'));
+		return (ft_intmaxtoa_base(((intmax_t)(signed char)va_arg(arg, int)), 10, 'x'));
 	return (NULL);
 }
 

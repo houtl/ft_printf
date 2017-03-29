@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 11:52:44 by thou              #+#    #+#             */
-/*   Updated: 2017/03/27 13:56:48 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/29 09:13:05 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	ft_nb_base(uintmax_t value, int base)
 	return (i);
 }
 
-char		*ft_uintmaxtoa_base(uintmax_t value, int base, char x)
+char		*ft_uimtoa_base(uintmax_t value, int base, char x)
 {
 	int			i;
 	uintmax_t	n;

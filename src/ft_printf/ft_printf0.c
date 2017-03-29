@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 12:33:38 by thou              #+#    #+#             */
-/*   Updated: 2017/03/28 18:28:13 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/29 10:05:07 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,7 @@ char		*ft_persent(t_h *h)
 	char			*dst;
 
 	dst = ft_strdup("%");
-	while (h->nb > 1 && h->moin != 1)
-	{
-		dst = ft_strjoinfree2(ft_strdup(" "), dst);
-		h->nb--;
-	}
-	while (h->nb > 1 && h->moin == 1)
-	{
-		dst = ft_strjoinfree(dst, " ");
-		h->nb--;
-	}
-	return (dst);
+	return (ft_printnesp(h, dst));
 }
 
 char		*ft_string(va_list arg, t_h *h)
@@ -38,7 +28,7 @@ char		*ft_string(va_list arg, t_h *h)
 		return (ft_strdup("(null)"));
 	else
 		str = ft_strdup(str);
-	if (h->ps != 0)
+	if (h->ps != 0 && h->ps < (int)ft_strlen(str))
 		str[h->ps] = 0;
 	return (ft_printnesp(h, str));
 }
@@ -93,6 +83,6 @@ char		*ft_adresse(va_list arg, t_h *h)
 	char			*str;
 
 	addr = (uintmax_t)va_arg(arg, unsigned int*);
-	str = ft_strjoinfree(ft_strdup("0x"), ft_uintmaxtoa_base(addr, 16, 'x'));
+	str = ft_strjoinfree(ft_strdup("0x"), ft_uimtoa_base(addr, 16, 'x'));
 	return (ft_printnesp(h, str));
 }
