@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 14:48:41 by thou              #+#    #+#             */
-/*   Updated: 2017/03/29 13:10:21 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/30 16:45:04 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdlib.h>
+# include <stdint.h>
+# include <wchar.h>
 
 typedef struct	s_handle
 {
@@ -38,10 +40,12 @@ typedef struct	s_handle
 	int		ps;
 }				t_h;
 
-char			*ft_unsignedint(va_list arg, t_h *h);
-char			*ft_oct(va_list arg, t_h *h);
-char			*ft_char(va_list arg, t_h *h);
-char			*ft_intdi(va_list arg, t_h *h);
+char			*ft_charlc(va_list arg, t_h *h);
+int				wchar_to_char(unsigned char **s, wchar_t c);
+char			*ft_unsignedint(va_list arg, t_h *h, char c);
+char			*ft_oct(va_list arg, t_h *h, char c);
+char			*ft_char(va_list arg, t_h *h, char c);
+char			*ft_intdi(va_list arg, t_h *h, char c);
 char			*ft_printhl(va_list arg, t_h *h, char c);
 char			*ft_printh(va_list arg, t_h *h, char c);
 int				ft_printf(const char *format, ...);

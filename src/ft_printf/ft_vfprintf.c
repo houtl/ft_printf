@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 15:02:10 by thou              #+#    #+#             */
-/*   Updated: 2017/03/29 13:21:53 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/30 16:19:58 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ static void	input_handlehl(char *fmt, t_h *h)
 		h->j = 1;
 	else if (*fmt == 'z')
 		h->z = 1;
+	else if (*fmt == ' ')
+		h->esp = 1;
 }
 
 void		input_handle(char **fmt, t_h *h)
 {
-	if (**fmt == 'l' || **fmt == 'h' || **fmt == 'j' || **fmt == 'z')
+	if (ft_strchr("hljz ", **fmt))
 		input_handlehl(*fmt, h);
-	else if (**fmt == ' ')
-		h->esp = 1;
 	else if (**fmt == '+')
 		h->plus = 1;
 	else if (**fmt == '-')
@@ -78,6 +78,7 @@ void		reset_handle(t_h *h)
 	h->ns = 0;
 	h->nb = 0;
 	h->isnb = 0;
+	h->ps = 0;
 }
 
 static char	*ft_printp(char *fmt, va_list arg, t_h *h)
@@ -94,14 +95,14 @@ static char	*ft_printp(char *fmt, va_list arg, t_h *h)
 		return (ft_hex(arg, h));
 	if (*fmt == 'X')
 		return (ft_hexup(arg, h));
-	if (*fmt == 'd' || *fmt == 'i')
-		return (ft_intdi(arg, h));
-	if (*fmt == 'c')
-		return (ft_char(arg, h));
+	if (*fmt == 'd' || *fmt == 'i' || *fmt == 'D')
+		return (ft_intdi(arg, h, *fmt));
+	if (*fmt == 'c' || *fmt == 'C')
+		return (ft_char(arg, h, *fmt));
 	if (*fmt == 'o' || *fmt == 'O')
-		return (ft_oct(arg, h));
+		return (ft_oct(arg, h, *fmt));
 	if (*fmt == 'u' || *fmt == 'U')
-		return (ft_unsignedint(arg, h));
+		return (ft_unsignedint(arg, h, *fmt));
 	return (ft_strsub(fmt, 0, 1));
 }
 
@@ -125,7 +126,7 @@ int			ft_vfprintf(char *fmt, va_list arg)
 			reset_handle(&h);
 		while (ft_strchr(handle, *fmt) && *fmt)
 			input_handle(&fmt, &h);
-		if (*fmt)
+		if (*fmt && ft_strchr("sSpdDioOuUxXcC%", *fmt))
 			dst = ft_strjoinfree2(dst, ft_printp(fmt++, arg, &h));
 	}
 	h.len += write(1, dst, ft_strlen(dst));
