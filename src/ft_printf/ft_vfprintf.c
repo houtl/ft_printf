@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 15:02:10 by thou              #+#    #+#             */
-/*   Updated: 2017/03/30 16:19:58 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/30 18:32:43 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static char	*ft_printp(char *fmt, va_list arg, t_h *h)
 		return (ft_oct(arg, h, *fmt));
 	if (*fmt == 'u' || *fmt == 'U')
 		return (ft_unsignedint(arg, h, *fmt));
-	return (ft_strsub(fmt, 0, 1));
+	return (ft_printnesp(h, ft_strsub(fmt, 0, 1)));
 }
 
 int			ft_vfprintf(char *fmt, va_list arg)
@@ -115,7 +115,8 @@ int			ft_vfprintf(char *fmt, va_list arg)
 	handle = "lhjz# 0123456789+-.";
 	dst = ft_strnew(0);
 	h.len = 0;
-	while (*fmt)
+	h.flag = 1;
+	while (*fmt && h.flag > 0)
 	{
 		dst = ft_strjoinfree2(dst, ft_strsubc(fmt, '%'));
 		while (*fmt && *fmt != '%')
@@ -126,7 +127,7 @@ int			ft_vfprintf(char *fmt, va_list arg)
 			reset_handle(&h);
 		while (ft_strchr(handle, *fmt) && *fmt)
 			input_handle(&fmt, &h);
-		if (*fmt && ft_strchr("sSpdDioOuUxXcC%", *fmt))
+		if (*fmt)
 			dst = ft_strjoinfree2(dst, ft_printp(fmt++, arg, &h));
 	}
 	h.len += write(1, dst, ft_strlen(dst));

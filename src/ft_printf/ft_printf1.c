@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 12:25:54 by thou              #+#    #+#             */
-/*   Updated: 2017/03/30 16:44:37 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/31 15:12:31 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,21 @@
 
 char	*ft_char(va_list arg, t_h *h, char c)
 {
-	char			c1;
-	char			*str;
+	unsigned char	c1;
+	unsigned char	str[2];
 
+	h->ps = 0;
 	if (h->l == 1 || c == 'C')
 		return (ft_charlc(arg, h));
-	else if (!(c1 = (char)va_arg(arg, int)))
+	c1 = (unsigned char)va_arg(arg, int);
+	str[0] = c1;
+	str[1] = 0;
+	if (str[0] == 0)
 	{
 		h->len += 1;
-		str = ft_strnew(0);
-		if (h->nb > 0)
-		{
-			str = ft_printnesp(h, str);
-			return (ft_strsub(str, 0, ft_strlen(str) - 1));
-		}
+		return (ft_printnesp1(h, ft_strdup((char*)str)));
 	}
-	else
-		str = ft_strsub(&c1, 0, 1);
-	return (ft_printnesp(h, str));
+	return (ft_printnesp(h, ft_strdup((char*)str)));
 }
 
 char	*ft_oct(va_list arg, t_h *h, char c)
@@ -45,7 +42,7 @@ char	*ft_oct(va_list arg, t_h *h, char c)
 	dst = ft_strjoinfree2(dst, ft_printh(arg, h, 'o'));
 	while ((int)ft_strlen(dst) < h->ps)
 		dst = ft_strjoinfree2(ft_strdup("0"), dst);
-	if (h->ps == -1)
+	if (h->ps == -1 && dst[0] == '0')
 		dst[0] = 0;
 	if (h->ns == 1 && dst[0] != '0')
 		dst = ft_strjoinfree2(ft_strdup("0"), dst);
@@ -61,7 +58,7 @@ char	*ft_hex(va_list arg, t_h *h)
 	dst = ft_strjoinfree2(dst, ft_printh(arg, h, 'x'));
 	while ((int)ft_strlen(dst) < h->ps)
 		dst = ft_strjoinfree2(ft_strdup("0"), dst);
-	if (h->ps == -1)
+	if (h->ps == -1 && dst[0] == '0')
 		dst[0] = 0;
 	if (h->ns == 1 && dst[0] != '0' && dst[0] != 0)
 		dst = ft_strjoinfree2(ft_strdup("0x"), dst);
@@ -77,7 +74,7 @@ char	*ft_hexup(va_list arg, t_h *h)
 	dst = ft_strjoinfree2(dst, ft_printh(arg, h, 'X'));
 	while ((int)ft_strlen(dst) < h->ps)
 		dst = ft_strjoinfree2(ft_strdup("0"), dst);
-	if (h->ps == -1)
+	if (h->ps == -1 && dst[0] == '0')
 		dst[0] = 0;
 	if (h->ns == 1 && dst[0] != '0' && dst[0] != 0)
 		dst = ft_strjoinfree2(ft_strdup("0X"), dst);

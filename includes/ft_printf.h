@@ -6,7 +6,7 @@
 /*   By: thou <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 14:48:41 by thou              #+#    #+#             */
-/*   Updated: 2017/03/30 16:45:04 by thou             ###   ########.fr       */
+/*   Updated: 2017/03/31 15:20:55 by thou             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ typedef struct	s_handle
 	int		nb;
 	int		isnb;
 	int		ps;
+	int		flag;
 }				t_h;
 
+char			*ft_printnesp1(t_h *h, char *str);
 char			*ft_charlc(va_list arg, t_h *h);
 int				wchar_to_char(unsigned char **s, wchar_t c);
 char			*ft_unsignedint(va_list arg, t_h *h, char c);
