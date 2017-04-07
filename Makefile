@@ -99,7 +99,7 @@ $(OBJ_DIR)%.o:$(SRC_DIR)%.c
 	@echo "\033[?25l\033[65D\033[1A"
 	@printf "\r\033[38;5;11m⌛ MAKE	$(NAME): \033[48;5;$(COLOR)m%*s\033[45;1m%*s$(RESET)$(YELLOW) %3d%% $(RESET) \033[38;5;11m %20s$(RESET)" $(DONE) "" $(TO_DO) "" $(PERCENT) "$(notdir $@)"
 	@mkdir -p $(dir $@)
-	@gcc $(FLAG) -c $< -o $@
+	@/usr/bin/gcc $(FLAG) -c $< -o $@
 	@$(eval INDEX=$(shell echo $$(($(INDEX)+1))))
 
 f: fclean

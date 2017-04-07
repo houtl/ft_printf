@@ -16,6 +16,7 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdint.h>
 # include "get_next_line.h"
 # include "ft_printf.h"
 
